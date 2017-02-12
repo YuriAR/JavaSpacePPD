@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jini-core.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jini-ext.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/outrigger.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jsk-lib.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/reggie.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/793390-Softwares/JavaSpaceExample/lib/jini-core.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/793390-Softwares/JavaSpaceExample/lib/jini-ext.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/793390-Softwares/JavaSpaceExample/lib/jsk-lib.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/793390-Softwares/JavaSpaceExample/lib/outrigger.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/793390-Softwares/JavaSpaceExample/lib/reggie.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
