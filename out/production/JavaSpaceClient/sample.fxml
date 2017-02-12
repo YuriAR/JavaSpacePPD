@@ -1,0 +1,47 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:controller="Controller"
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1" alignment="center">
+            <Button text="Adicionar ambiente"
+                    fx:id="buttonAddEnv"/>
+            <Button text="Adicionar dispositivo"
+                    fx:id="buttonAddDev"/>
+            <Button text="Mover dispositivo"
+                    fx:id="buttonMoveDev"/>
+        </HBox>
+    </top>
+    <center>
+        <GridPane
+                alignment="center" hgap="10" vgap="10">
+
+
+            <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="1">
+                <ListView prefHeight="50" orientation="HORIZONTAL" fx:id="listViewEnvs"/>
+            </HBox>
+
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1">
+                <ListView prefHeight="150" orientation="VERTICAL" fx:id="listViewDevs"/>
+            </VBox>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1" alignment="center">
+            <Button text="Deletar dispositivo"
+                    fx:id="buttonDelDev"/>
+            <Button text="Deletar ambiente"
+                    fx:id="buttonDelEnv"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
