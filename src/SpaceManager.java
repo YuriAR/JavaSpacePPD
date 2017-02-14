@@ -10,7 +10,6 @@ import java.util.List;
 public class SpaceManager {
     public List<Ambiente> environments;
     public UICallback callback;
-    public int nextEnvironment;
     public JavaSpace space;
 
     public SpaceManager(UICallback callback){
@@ -116,7 +115,12 @@ public class SpaceManager {
     public void deleteEnvironments(String environmentName){
         Ambiente template = new Ambiente(environmentName);
         try {
-            space.take(template,null,60);
+            Ambiente read = (Ambiente) space.read(template, null,60);
+            if (read != null){
+                if (read.devices == null || read.devices.size() == 0){
+                    space.take(template,null,60);
+                }
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -176,7 +180,41 @@ public class SpaceManager {
     }
 
     public void moveDevice(String deviceName, String fromEnvironmentName, String toEnvironmentName){
-        //Move device from one environment to another
+        try{
+            Ambiente templateFrom = new Ambiente(fromEnvironmentName);
+            Ambiente templateTo = new Ambiente(toEnvironmentName);
+            Ambiente fromTaken = (Ambiente) space.take(templateFrom, null, 60);
+            Ambiente toTaken = (Ambiente) space.take(templateTo,null,60);
+            if (fromTaken != null && toTaken != null){
+                if (fromTaken.devices != null){
+                    List<Dispositivo> toRemove = new ArrayList<>();
+                    Dispositivo toMove = null;
+                    for (Dispositivo disp : fromTaken.devices){
+                        if (disp.name.equals(deviceName)){
+                            toRemove.add(disp);
+                            toMove = disp;
+                        }
+                    }
+                    fromTaken.devices.removeAll(toRemove);
+                    if (toMove != null){
+                        if (toTaken.devices != null){
+                            toMove.name = toMove.name + "(*)";
+                            toTaken.devices.add(toMove);
+                        }
+                        else{
+                            toTaken.devices = new ArrayList<>();
+                            toMove.name = toMove.name + "(*)";
+                            toTaken.devices.add(toMove);
+                        }
+                    }
+                }
+            }
+            space.write(fromTaken,null,Lease.FOREVER);
+            space.write(toTaken,null,Lease.FOREVER);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         callback.refreshUI();
     }
 
